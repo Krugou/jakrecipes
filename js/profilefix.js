@@ -1,32 +1,18 @@
 'use strict';
-
-
-
 const getQParam = (param) => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     return urlParams.get(param);
 };
-
-
-
-
 const profileUser = getQParam('username');
 
 const createProfileRecipes = async (username) => {
-
-
-
-
     // KIRJAUTUNUT KÄYTTÄJÄ
-
-
     const fetchOptions = {
         headers: {
             Authorization: 'Bearer ' + sessionStorage.getItem('token'),
         },
     };
-    console.log('username', username);
     fetch(url + '/recipeslimited/profile/' + username, fetchOptions)
         .then(response => {
             if (response.ok) {
@@ -36,7 +22,7 @@ const createProfileRecipes = async (username) => {
             }
         }
         ).then((queryData) => {
-            console.log("reseptien tiedot", queryData);
+            console.log("reseptien tiedot", queryData.length);
             if (queryData.length === 0) {
                 const userposts = document.getElementById('userPosts');
                 const noRecipes = document.createElement('P');
@@ -49,11 +35,11 @@ const createProfileRecipes = async (username) => {
                 createResults(queryData, userposts);
             }
         }).catch((error) => {
-            const userposts = document.getElementById('userPosts');
-            const noRecipes = document.createElement('P');
-            noRecipes.setAttribute('class', 'fontsizeforp');
-            userposts.appendChild(noRecipes);
-            noRecipes.innerText = 'Ei reseptejä';
+            // const userposts = document.getElementById('userPosts');
+            // const noRecipes = document.createElement('P');
+            // noRecipes.setAttribute('class', 'fontsizeforp');
+            // userposts.appendChild(noRecipes);
+            // noRecipes.innerText = 'Ei reseptejä';
         }
         );
 };
@@ -163,6 +149,7 @@ function profiledetails(Imagefilepath, username) {
                 user.Username = newusername;
                 sessionStorage.setItem('user', JSON.stringify(user));
                 location.href = 'logout.html';
+                alert("Sinut on kirjattu ulos");
             }).catch((error) => {
                 console.log('error', error);
             });
@@ -214,7 +201,3 @@ function profiledetails(Imagefilepath, username) {
 }
 createProfileRecipes(profileUser)
 createProfileUser(profileUser)
-
-
-
-

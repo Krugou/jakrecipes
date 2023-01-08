@@ -59,7 +59,7 @@
     <script crossorigin="anonymous" src="fontawesome/solid.js"></script>
 
     <title>JAK Reseptit</title>
-    <link href="./css/main.css" rel="stylesheet" />
+    <link href="./css/main.css" rel="stylesheet">
     <script defer src="./js/utils/url.js"></script>
     <script defer src="./js/profilefix.js"></script>
     <script defer src="./js/generateresults.js"></script>
@@ -72,7 +72,7 @@
 
 <body class="pagebody">
     <header class="pageheader">
-        <input id="check"  class="displaynone" type="checkbox">
+        <input id="check" class="displaynone" type="checkbox">
         <label class="checknappi" for="check">
             <i class="fas fa-bars"></i>
         </label>
@@ -91,10 +91,10 @@
         </nav>
     </header>
     <main class="pagemain">
-        <H2 class="otsikko">Profiili</H2>
+        <h2 class="otsikko">Profiili</h2>
         <article id="profileArticle">
             <section>
-                <H2 id="userPostTitle">User Posts</H2>
+                <h2 id="userPostTitle">Omat Reseptit</h2>
                 <div id="userPosts" class="userPosts">
 
                 </div>
@@ -111,17 +111,15 @@
                         <input id="newusername" name="username" type="text" placeholder="nimimerkki">
                     </div>
                     <div class="pic">
-                        <p class="fontsizeforp">Profile Picture</p>
-                        <img id="currentuserimage" alt="currentuserimage">
                         <p class="fontsizeforp">Vaihda profiilikuva</p>
-
+                        <h2 class="selectPicture">Valitse kuva</h2>
                         <form enctype="multipart/form-data" id="userProfileImage">
-                            <input accept="image/*" id="file" multiple='multiple' name="userImage" type="file">
+                            <input accept="image/*" id="file" multiple="multiple" name="userImage" type="file">
                         </form>
                     </div>
                     <div class="save">
-                        <button id="saveButton">Save</button>
-                        <button id="delete">Delete Profile</button>
+                        <button id="saveButton">Tallenna</button>
+                        <button id="delete">Poista Käyttäjä</button>
                     </div>
                     <div class="modal" id="deleteModal">
                         <div class="modal-content">

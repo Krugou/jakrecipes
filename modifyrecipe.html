@@ -61,7 +61,7 @@
     <script crossorigin="anonymous" src="fontawesome/fontawesome.js"></script>
     <script crossorigin="anonymous" src="fontawesome/solid.js"></script>
     <title>JAK Reseptit</title>
-    <link href="./css/main.css" rel="stylesheet" />
+    <link href="./css/main.css" rel="stylesheet">
     <script defer src="./js/utils/url.js"></script>
     <script defer src="js/modifyrecipe.js"></script>
     <script defer src="./js/utils/navtoggle.js"></script>
@@ -70,7 +70,7 @@
 
 <body class="pagebody">
     <header class="pageheader">
-        <input id="check" type="checkbox">
+        <input id="check" class="displaynone" type="checkbox">
         <label class="checknappi" for="check">
             <i class="fas fa-bars"></i>
         </label>
@@ -88,7 +88,7 @@
         </nav>
     </header>
     <main class="pagemain">
-        <H2 class="otsikko" id="editRecipeh2">Muokkaa reseptiä</H2>
+        <h2 class="otsikko" id="editRecipeh2">Muokkaa reseptiä</h2>
         <div class="addRecipe_detail">
             <div class="recipename">
                 <input id="recipenameInput" placeholder="Reseptin nimi (pakollinen).">
@@ -108,16 +108,16 @@
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     <div class="modaladd">
-                        <H3>Lisää tageja</H3>
+                        <h3>Lisää tageja</h3>
                         <div class="tags" id="tags">
                         </div>
                     </div>
                 </div>
             </div>
+            <h2 class="selectPicture">Valitse kuva</h2>
             <form class="imagebutton" enctype="multipart/form-data" id="recipeAddimagebutton2">
-                <input accept="image/*" id="file" multiple='multiple' name="recipeImage" type="file">
+                <input accept="image/*" id="file" multiple="multiple" name="recipeImage" type="file">
             </form>
-        </div>
         </div>
         <div class="recipe_desc">
             <div class="instruction">
@@ -131,7 +131,7 @@
         </div>
     </main>
     <footer class="pageFooter">
-        <div aria-label="Info" class="pageFooterContainer">
+        <div class="pageFooterContainer">
             <h3 class="pageFooterContainerListTitle">Info</h3>
             <hr>
             <ul class="pageFooterContainerList">
@@ -140,7 +140,7 @@
                 <li class="pageFooterContainerListItem"><a id="contact">Contact us</a></li>
             </ul>
         </div>
-        <div aria-label="Socialmediat" class="pageFooterContainer">
+        <div class="pageFooterContainer">
             <h3 class="pageFooterContainerListTitle">Socialmedia</h3>
             <hr>
             <ul class="pageFooterContainerList">
@@ -149,7 +149,7 @@
                 <li class="pageFooterContainerListItem"><a>facebook</a></li>
             </ul>
         </div>
-        <div aria-label="Tekijät" class="pageFooterContainer">
+        <div class="pageFooterContainer">
             <h3 class="pageFooterContainerListTitle">Tekijät</h3>
             <hr>
             <ul class="pageFooterContainerList">

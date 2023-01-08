@@ -2,7 +2,8 @@ const presentationdata = document.getElementById('presentationdata');
 
 function createResults(json, target, length) {
   for (let i = 0; i < (json.length); i++) {
-    if (screen.width >= 1000) {
+   // Check the screen width and assign the corresponding size for the thumbnail image file path
+if (screen.width >= 1000) {
       thumbnail_imagefilepath = 'thumbnails/' + json.recipesTable[i]?.Imagefilepath +
         '_500px.png';
       json.recipesTable[i]['thumbnailImagefilepath'] = thumbnail_imagefilepath;
@@ -32,37 +33,43 @@ function createResults(json, target, length) {
 
     }
     img.alt = json.recipesTable[i]?.Recipename;
-    const p = document.createElement('p');
-    const p2 = document.createElement('p');
-    const p3 = document.createElement('p');
-    const p4 = document.createElement('p');
-    const p5 = document.createElement('p');
-    const button = document.createElement('button');
-    button.addEventListener('click', () => {
+    const p = document.createElement('p'); // Create a new paragraph element.
+    const p2 = document.createElement('p'); // Create a new paragraph element.
+    const p3 = document.createElement('p'); // Create a new paragraph element.
+    const p4 = document.createElement('p'); // Create a new paragraph element.
+    const p5 = document.createElement('p'); // Create a new paragraph element.
+    const button = document.createElement('button'); // Create a new button element.
+    figure.addEventListener('click', () => {
       location.href = 'recipe.html?id=' + json.recipesTable[i]?.Recipeid;
     });
 
     p.innerText = json.recipesTable[i]?.Recipename;
     p2.innerText = "Aika: " + json.recipesTable[i]?.Recipetime + "min";
     p.setAttribute("id", "recipeFigureName")
-    p2.innerText = json.recipesTable[i]?.Recipetime;
-    p.innerText = json.recipesTable[i]?.Recipename;
-    p2.innerText = json.recipesTable[i]?.Recipetime;
+    p.classList.add('cardtitle')
     p3.innerText = json.recipesTable[i]?.Coursetype;
     p4.innerText = json.recipesTable[i]?.Mealtype;
     p5.innerText = "Hinta: " + json.recipesTable[i]?.Recipeprice?.toFixed(2) + "€";
-    button.innerText = 'Katso resepti';
+    p2.classList.add('cardtext')
+    p3.classList.add('cardtext')
+    p4.classList.add('cardtext')
+    p5.classList.add('cardtext')
     figure.appendChild(img);
     figure.appendChild(p);
     figure.appendChild(p2);
     figure.appendChild(p3);
     figure.appendChild(p4);
     figure.appendChild(p5);
-    figure.appendChild(button);
     figure.classList.add('recipefigure');
     target.appendChild(figure);
 
   };
+  let FieldElement1 = document.getElementById('loading');
+
+  FieldElement1.style.margin = '';
+
+  FieldElement1.style.fontSize = '';
+  FieldElement1.innerText = '';
 }
 
 // random number generator 1 - 2000
@@ -77,7 +84,8 @@ function clearPage() {
 
 let timeoutToken = 0;
 window.onload = () => {
-  const FieldElement1 = document.getElementById('loading');
+  let FieldElement1 = document.getElementById('loading');
+
   const typeInputFieldElement = document.getElementById('typeInputField');
   typeInputFieldElement.onkeyup = (event) => {
 
@@ -87,12 +95,11 @@ window.onload = () => {
     }
     timeoutToken = setTimeout(() => {
 
-      FieldElement1.innerText = '';
       frontPageQuery(typeInputFieldElement.value);
-    }, 2500);
+    }, 500); // half second in ms 
 
   };
-}; 
+};
 // if user is logged in, show create radio button for favorites
 
 let selector = "";
@@ -119,9 +126,15 @@ for (let i = 0; i < radioitems.length; i++) {
 }
 
 function frontPageQuery(query) {
-  const FieldElement1 = document.getElementById('loading');
+  let FieldElement1 = document.getElementById('loading');
+
   let selectedOption = selector.value;
   if (selectedOption === '1') {
+    let FieldElement1 = document.getElementById('loading');
+
+
+    FieldElement1.style.margin = '0.5rem';
+    FieldElement1.style.fontSize = '2em';
     FieldElement1.innerText = 'Haetaan reseptejä nimen mukaan...';
     fetch(url + `/recipeslimited/filterrecipes/` + query).then(response => {
       if (response.ok) {
@@ -134,8 +147,15 @@ function frontPageQuery(query) {
       createResults(queryData, presentationdata);
 
     }).catch((error) => {
+      FieldElement1.innerText = 'Haku epäonnistui yritä uudelleen';
     });
   } else if (selectedOption === '2') {
+    let FieldElement1 = document.getElementById('loading');
+
+
+    FieldElement1.style.margin = '0.5rem';
+    FieldElement1.style.fontSize = '2em';
+
     FieldElement1.innerText = 'Haetaan reseptejä ruokalajin mukaan...';
 
     fetch(url + `/recipeslimited/filtermealtypes/` + query).then(response => {
@@ -148,10 +168,17 @@ function frontPageQuery(query) {
     }).then((queryData) => {
       clearPage();
       createResults(queryData, presentationdata);
-      FieldElement1.innerText = '';
     }).catch((error) => {
+      FieldElement1.innerText = 'Haku epäonnistui yritä uudelleen';
+
     });
   } else if (selectedOption === '3') {
+    let FieldElement1 = document.getElementById('loading');
+
+
+    FieldElement1.style.margin = '0.5rem';
+    FieldElement1.style.fontSize = '2em';
+
     FieldElement1.innerText = 'Haetaan reseptejä aterialajin mukaan...';
 
     fetch(url + `/recipeslimited/filtercoursetypes/` + query).then(response => {
@@ -163,14 +190,22 @@ function frontPageQuery(query) {
     }).then((queryData) => {
       clearPage();
       createResults(queryData, presentationdata);
-      FieldElement1.innerText = '';
     }).catch((error) => {
+      FieldElement1.innerText = 'Haku epäonnistui yritä uudelleen';
+
     });
   } else if (selectedOption === '4') {
+    let FieldElement1 = document.getElementById('loading');
+
+
+    FieldElement1.style.margin = '0.5rem';
+    FieldElement1.style.fontSize = '2em';
+
     FieldElement1.innerText = 'Haetaan reseptejä hinnan mukaan...';
     // if query contains letters, do nothing
     if (query.match(/[a-z]/i)) {
-      return;
+
+      throw FieldElement1.innerText = 'Numeroita vain';
     }
 
     fetch(url + `/recipeslimited/filterbyprice/` + query).then(response => {
@@ -182,9 +217,15 @@ function frontPageQuery(query) {
     }).then((queryData) => {
       clearPage();
       createResults(queryData, presentationdata);
-      FieldElement1.innerText = '';
     }).catch((error) => {
+      FieldElement1.innerText = 'Haku epäonnistui yritä uudelleen';
+
     });
   }
+
+  FieldElement1.style.margin = '';
+
+  FieldElement1.style.fontSize = '';
+  FieldElement1.innerText = '';
 }
 
